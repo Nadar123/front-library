@@ -28,6 +28,6 @@ export class BookItemComponent implements OnInit {
   }
   
   btnClick = function () {
-    this.router.navigateByUrl('/booklist');
+    this.router.navigateByUrl('/');
   };
 }

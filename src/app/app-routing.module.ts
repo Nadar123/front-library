@@ -6,11 +6,11 @@ import { FormComponent } from './form/form.component';
 import {BookItemComponent} from './book-item/book-item.component'
 const routes: Routes = [
   
-  { path: 'booklist', component: BookListComponent },
+  { path: '', component: BookListComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'newbook', component: FormComponent },
-  { path: 'bookitem/:id', component: BookItemComponent }
-
+  { path: 'bookitem/:id', component: BookItemComponent },
+  { path: 'newbook/edit/:id', component: FormComponent }
 ];
 
 @NgModule({

@@ -26,16 +26,22 @@
   <td>
     <button 
       routerLink="/bookitem/{{book._id}}" 
-      type="button" class="btn btn-outline-info">Show</button> 
+      type="button" class="btn btn-outline-info"
+      > Show </button> 
   </td>
   <td>
     <button 
-      type="button" class="btn btn-outline-primary">Update</button>
+      type="button" 
+      class="btn btn-outline-primary"
+      routerLink="/newbook/edit/{{book._id}}"
+      > Update </button>
   </td>
-  <!-- <td><button routerLink="/blog/edit/{{blog._id}}" type="button" class="btn btn-outline-primary">Update</button></td> -->
   <td>
     <button 
-    type="button" class="btn btn-outline-danger">Delete</button>
+    type="button" 
+    class="btn btn-outline-danger"
+    (click)="delete()" 
+    > Delete </button>
   </td>
 </tr>
 </tbody>
