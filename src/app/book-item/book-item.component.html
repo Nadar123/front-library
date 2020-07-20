@@ -1,0 +1,40 @@
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title"> Book Name: {{ book.name }}</h5>
+    <span class="isbn_code"> ISBN Code: {{ book.isbn_code}}</span>
+  </div>
+  <div class="card-body">
+    <p class="text-title"> Author:
+      <span class="dynamic-text">{{ book.author }}</span>
+    </p>
+    <p class="text-title">
+      Publishing Name:
+      <span class="dynamic-text">  {{ book.publising_name }} </span>
+    </p>
+    <p class="text-title">
+      Publishing Year:
+      <span class="dynamic-text"> {{ book.publising_year }} </span>
+    </p>
+    <p class="text-title">
+      Publishing Place: 
+      <span class="dynamic-text"> {{ book.expenditure }} </span>
+    </p>
+  </div>
+  <div class="btn-book-item">
+    <a 
+    (click)="delete()" 
+    class="btn btn-outline-danger"
+    > 
+      Delete 
+    </a> 
+    <a 
+      (click)="btnClick()" 
+      routerLink="booklist" 
+      class="btn btn-outline-primary"
+    > 
+      To The List Books
+    </a>
+  </div>
+</div>
+

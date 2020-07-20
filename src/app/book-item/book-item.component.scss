@@ -1,0 +1,54 @@
+.card {
+  max-width: 800px;
+  margin: 4rem auto;
+  transition: box-shadow 0.4s ease-in-out;
+  padding-bottom: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-body {
+    .text-title {
+      color: #1b9deb;
+      text-transform: uppercase;
+      transition: all 0.2 ease-in-out;
+      .dynamic-text {
+        color: gray;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+    .btn-book-item  {
+      text-align: center;
+
+     
+      .btn {
+        padding: 8px 45px;
+        width: 250px;
+        margin: 10px;
+
+        &.btn-outline-danger{
+          color: #dc3545;
+        }
+
+        &.btn-outline-primary {
+          color: #007bff;
+        }
+    
+        &:hover {
+          color: #fff;
+        }
+    }
+    }
+}

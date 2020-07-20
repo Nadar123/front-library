@@ -1,0 +1,28 @@
+table {
+  width: 95%;
+  margin: 3rem auto;
+  border: 2px solid #dee2e6;
+
+  thead {
+    tr {
+      th {
+        font-size: 15px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.2s ease-in-out;
+      &:hover {
+        background-color: rgba(0,0,0, 0.05);
+      }
+      td {
+        font-size: 14px;
+        font-size: 300;
+        color: gray;
+      }
+    }
+  }
+}

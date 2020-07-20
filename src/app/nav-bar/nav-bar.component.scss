@@ -1,0 +1,17 @@
+nav {
+  padding: 1rem;
+  .logo {
+    color: #fff;
+  }
+
+  .collapse.navbar-collapse {
+    .navbar-nav {
+      .nav-item {
+        padding: 0 2rem;
+        .item {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

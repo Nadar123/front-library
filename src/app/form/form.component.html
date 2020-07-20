@@ -1,0 +1,200 @@
+<div class="container"> 
+  <form #f="ngForm" ngSubmit="onSubmit()" class="library-form">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>About the Book</h2>
+        <div class="form-group">
+          <label for="book">Book Name</label>
+          <input id="name" name="name" class="form-control"
+            required minlength="4" [(ngModel)]="book.name" 
+            #name="ngModel" >
+            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                class="alert alert-danger">
+  
+              <div *ngIf="name.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="isbn_code">ISBN Code</label>
+          <input id="isbn_code" name="isbn_code" class="form-control"
+            required minlength="8" [(ngModel)]="book.isbn_code" 
+            #isbn_code="ngModel" >
+            <div *ngIf="isbn_code.invalid && (isbn_code.dirty || isbn_code.touched)"
+                class="alert alert-danger">
+  
+              <div *ngIf="isbn_code.errors.required">
+                ISBN Code is required.
+              </div>
+              <div *ngIf="isbn_code.errors.minlength">
+                Name must be at least 8 characters long.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="authors"> Author/s </label>
+          <input id="authors" name="authors" class="form-control"
+            required minlength="2" [(ngModel)]="book.authors" 
+            #authors="ngModel" >
+            <div *ngIf="authors.invalid && (authors.dirty || authors.touched)"
+                class="alert alert-danger">
+  
+              <div *ngIf="authors.errors.required">
+                author/s name is required.
+              </div>
+              <div *ngIf="authors.errors.minlength">
+                Name must be at least 2 characters long.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="publising_name"> publising Name </label>
+          <input id="publising_name" name="publising_name" class="form-control"
+            required minlength="1" [(ngModel)]="book.publising_name" 
+            #publising_name="ngModel" >
+            <div *ngIf="publising_name.invalid && (publising_name.dirty || publising_name.touched)"
+                class="alert alert-danger">
+  
+              <div *ngIf="publising_name.errors.required">
+                Publising Name is required.
+              </div>
+              <div *ngIf="publising_name.errors.minlength">
+                Name must be at least 1 characters long.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="publising_year">Year Of The Publising Book</label>
+          <input id="publising_year" name="publising_year" class="form-control"
+            required minlength="1" [(ngModel)]="book.publising_year" 
+            #publising_year="ngModel" >
+            <div *ngIf="publising_year.invalid && (publising_year.dirty || publising_year.touched)"
+                class="alert alert-danger">
+  
+              <div *ngIf="publising_year.errors.required">
+                Date is required for submiting the form. do it now mather fucker.
+              </div>
+              <div *ngIf="publising_year.errors.minlength">
+                Date must be full year/mouth/day.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="expenditure">Place Of Expenditure </label>          
+          <input id="expenditure" name="expenditure" class="form-control"
+            required minlength="2" [(ngModel)]="book.expenditure" 
+            #expenditure="ngModel" >
+            <div *ngIf="expenditure.invalid && (expenditure.dirty || expenditure.touched)"
+                class="alert alert-danger">
+  
+              <div *ngIf="expenditure.errors.required">
+                Place Of Expenditure is required.
+              </div>
+              <div *ngIf="expenditure.errors.minlength">
+                Name must be at least 2 characters long.
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <!-- <h2> Books Authors</h2> -->
+        <!-- <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input 
+            type="text" 
+            class="form-control" 
+          >
+        </div>
+        <div class="form-group">
+          <label for="isbn">Last Name</label>
+          <input 
+            type="lastName" 
+            class="form-control"  
+          >
+        </div>
+        <div class="form-group">
+          <label for="BirthYear">Year Of Birth </label>
+          <input 
+            type="date" 
+            name="BirthYear"
+          >
+        </div> -->
+        <!-- <p>
+          <button 
+            type="button" 
+            class="btn btn-outline-primary" 
+            (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" 
+            aria-controls="collapseExample"
+          >
+            more then one book author? click to add them
+          </button>
+        </p> -->
+        <!-- <div id="collapseExample" [ngbCollapse]="isCollapsed">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                >
+              </div>
+              <div class="form-group">
+                <label for="isbn">Last Name</label>
+                <input 
+                  type="lastName" 
+                  class="form-control"  
+                >
+              </div>
+              <div class="form-group">
+                <label for="BirthYear">Year Of Birth </label>
+                <input 
+                  type="date" 
+                  name="BirthYear"
+                >
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-md-4">
+        <!-- <h2>Books Publishing</h2> -->
+        <!-- <div class="form-group">
+          <label for="isbn">publising Name</label>
+          <input 
+            type="text" 
+            class="form-control"  
+          >
+        </div>
+        <div class="form-group">
+          <label for="isbn">Establish Year</label>
+          <input 
+          type="date" 
+          name="establish"
+        >
+        </div>
+        <div class="form-group">
+          <label for="isbn">Address:(Counrty, City, street)</label>
+          <input 
+            type="text" 
+            class="form-control"  
+          >
+        </div> -->
+      </div>
+    </div>
+    <div class="submit-btn">
+      <button 
+      (click)="onSubmit()" 
+      type="submit"
+      class="btn btn-primary"
+      >
+        Submit
+    </button>
+    </div>
+  </form>
+</div>
