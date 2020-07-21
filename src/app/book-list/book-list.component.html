@@ -1,51 +1,67 @@
 
-<table class="table">
-<thead>
-<tr>
-  <th scope="col">Name</th>
-  <th scope="col">ISBN Code</th>
-  <th scope="col">Authors</th>
-  <th scope="col">Publising_name</th>
-  <th scope="col">Publising_year</th>
-  <th scope="col">Expenditure Place</th>
-  <th scope="col"></th>
-  <th scope="col"></th>
-  <th scope="col"></th> 
-
-</tr>
-</thead>
-<tbody *ngFor="let book of books">
-<tr>
-
-  <td>{{ book.name }}</td>
-  <td>{{ book.isbn_code  }}</td>
-  <td>{{ book.author }}</td>
-  <td>{{ book.publising_name }}</td>
-  <td>{{ book.publising_year }}</td>
-  <td>{{ book.expenditure  }}</td>
-  <td>
-    <button 
-      routerLink="/bookitem/{{book._id}}" 
-      type="button" class="btn btn-outline-info"
-      > Show </button> 
-  </td>
-  <td>
-    <button 
-      type="button" 
-      class="btn btn-outline-primary"
-      routerLink="/newbook/edit/{{book._id}}"
-      > Update </button>
-  </td>
-  <td>
-    <button 
-    type="button" 
-    class="btn btn-outline-danger"
-    (click)="delete()" 
-    > Delete </button>
-  </td>
-</tr>
-</tbody>
-</table>
+  <div class="book-list-wrapper">
+    <div class="input-search">
+      <div class="search-wrapper">
+        <label for="">Sreach By Book</label>
+        <app-input-component></app-input-component>
+      </div>
+      <div class="search-wrapper">
+        <label for="">Sreach By ISBN Code</label>
+        <app-input-component></app-input-component>
+      </div>
+  
+      <div class="search-wrapper">
+        <label for="">Sreach By Autors</label>
+        <app-input-component></app-input-component>
+      </div>
+  
+      <div class="search-wrapper">
+        <label for="">Sreacch By Publising name	</label>
+        <app-input-component></app-input-component>
+      </div>
+    </div>
+    <table class="table">
+    <thead>
+    <tr>
+      <th scope="col" *ngFor="let header of headers">{{ header }}</th> 
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th> 
+  
+    </tr>
+    </thead>
+    <tbody *ngFor="let book of books">
+    <tr>
+      <td>{{ book.name }}</td>
+      <td>{{ book.isbn_code  }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.publising_name }}</td>
+      <td>{{ book.publising_year }}</td>
+      <td>{{ book.expenditure  }}</td>
+      <td>
+        <button 
+          routerLink="/bookitem/{{book._id}}" 
+          type="button" class="btn btn-outline-info"
+          > Show </button> 
+      </td>
+      <td>
+        <button 
+          type="button" 
+          class="btn btn-outline-primary"
+          routerLink="/newbook/edit/{{book._id}}"
+          > Update </button>
+      </td>
+      <td>
+        <button 
+        type="button" 
+        class="btn btn-outline-danger"
+        (click)="delete(book._id)" 
+        > Delete </button>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
 
 
 

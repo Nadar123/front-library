@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibraryService {
+  booksSubject:BehaviorSubject<any>;
   books = [
     {
       '_id': '1',
@@ -24,9 +27,16 @@ export class LibraryService {
       'expenditure': 'Tel-Aviv',
     }, 
   ];
-  constructor() { }
+  constructor() {
+    this.booksSubject = new BehaviorSubject(this.books);
+    // this.setBooks(this.books);
+   }
   getbooks() {
-    return this.books;
+    return this.booksSubject.asObservable();
+  }
+
+  setBooks(books){
+    this.booksSubject.next(books);
   }
 
   getItem(id: string) {
@@ -38,13 +48,15 @@ export class LibraryService {
     }
   }
 
- delete(id: string) {
-   for ( let i = 0; i < this.books.length; i++) {
-     if ( this.books[i]._id === id) {
-       this.books.splice(i, 1);
-       return;
-     }
-   }
+ deleteBook(id: string) {
+   this.books = this.books.filter(book => book._id!= id);
+   this.setBooks(this.books);
+  //  for ( let i = 0; i < this.books.length; i++) {
+  //    if ( this.books[i]._id === id) {
+  //      this.books.splice(i, 1);
+  //      return;
+  //    }
+  //  }
  }
 
  add(libraryitem: any) {

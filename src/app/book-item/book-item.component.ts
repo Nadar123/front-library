@@ -22,7 +22,7 @@ export class BookItemComponent implements OnInit {
   }
 
   delete() {
-    this.libraryService.delete(this.id);
+    this.libraryService.deleteBook(this.id);
     this.router.navigate(['/']);
   }
   

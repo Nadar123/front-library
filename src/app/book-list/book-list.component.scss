@@ -1,33 +1,43 @@
-table {
+.book-list-wrapper {
   width: 95%;
   margin: 3rem auto;
-  border: 1px solid black;
 
-  thead {
-    border: 1px solid black;
-    tr {
-      border: 1px solid black;
-      th {
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-        font-size: 15px;
-        font-weight: 400;
-      }
+  .input-search {
+    display: flex;
+    justify-content: center;
+    .search-wrapper {
+      margin: 1rem;
     }
   }
-
-  tbody {
-    border: 1px solid black;
-    tr {
-      transition: background-color 0.2s ease-in-out;
-      &:hover {
-        background-color: rgba(0,0,0, 0.05);
+  table {
+    border: 1px solid #77a2d08a;
+  
+    thead {
+      border: 1px solid #77a2d08a;
+      tr {
+        border: 1px solid #77a2d08a;
+        th {
+          border-top: 1px solid #77a2d08a;
+          border-bottom: 1px solid #77a2d08a;
+          font-size: 15px;
+          font-weight: 400;
+        }
       }
-      td {
-        border-bottom: 1px solid black;
-        font-size: 14px;
-        font-size: 300;
-        color: gray;
+    }
+  
+    tbody {
+      border: 1px solid #77a2d08a;
+      tr {
+        transition: background-color 0.2s ease-in-out;
+        &:hover {
+          background-color: rgba(0,0,0, 0.05);
+        }
+        td {
+          border-bottom: 1px solid #77a2d08a;
+          font-size: 14px;
+          font-size: 300;
+          color: gray;
+        }
       }
     }
   }
