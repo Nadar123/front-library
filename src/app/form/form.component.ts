@@ -21,11 +21,11 @@ export class FormComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    // to bring the id
+    // to bring book-id
     this.route.params.subscribe((params) => this.id = params.id);
-    // go to the service to bring an book
+    // book
     if (this.id) {
-      this.book = this.libraryService.getbooks();
+      this.book = this.libraryService.getItem(this.id);
       this.formTitle = 'Edit Book';
     } else {
         this.book = {
@@ -36,7 +36,7 @@ export class FormComponent implements OnInit {
           publising_year: '',
           expenditure: ''
         };
-        this.formTitle = 'New Book';
+        this.formTitle = 'Book Details';
     }
   }
 
@@ -51,11 +51,4 @@ export class FormComponent implements OnInit {
     }
     this.router.navigate([`bookitem/${this.id}`]);
   };
-
-    // let disableBtn = false;
-    // this. ngForm.valueChanges 
-    //   .subscribe(() => {
-    //     this.disableBtn = this. ngForm.valid;
-    // });
-
 }

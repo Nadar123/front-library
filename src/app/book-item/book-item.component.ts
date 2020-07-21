@@ -22,9 +22,8 @@ export class BookItemComponent implements OnInit {
   }
 
   delete() {
-    debugger;
     this.libraryService.delete(this.id);
-    this.router.navigate(['booklist']);
+    this.router.navigate(['/']);
   }
   
   btnClick = function () {

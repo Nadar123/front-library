@@ -1,11 +1,15 @@
 table {
   width: 95%;
   margin: 3rem auto;
-  border: 2px solid #dee2e6;
+  border: 1px solid black;
 
   thead {
+    border: 1px solid black;
     tr {
+      border: 1px solid black;
       th {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
         font-size: 15px;
         font-weight: 400;
       }
@@ -13,12 +17,14 @@ table {
   }
 
   tbody {
+    border: 1px solid black;
     tr {
       transition: background-color 0.2s ease-in-out;
       &:hover {
         background-color: rgba(0,0,0, 0.05);
       }
       td {
+        border-bottom: 1px solid black;
         font-size: 14px;
         font-size: 300;
         color: gray;

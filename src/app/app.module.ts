@@ -13,6 +13,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { FormComponent } from './form/form.component';
 import { BookItemComponent } from './book-item/book-item.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
+import { AddAuthorsComponent } from './add-authors/add-authors.component';
+import { InputComponentComponent } from './input-component/input-component.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BookEditComponent } from './book-edit/book-edit.component';
     NotificationsComponent,
     FormComponent,
     BookItemComponent,
-    BookEditComponent
+    BookEditComponent,
+    AddAuthorsComponent,
+    InputComponentComponent
   ],
   imports: [
     HttpClientModule,

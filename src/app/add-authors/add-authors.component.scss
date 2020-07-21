@@ -1,0 +1,21 @@
+.add-authors {
+  padding: 6px 0;
+
+  .appendInput {
+    background: #fff;
+    border: none;
+    outline: none;
+    color: #007bff;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    margin-bottom: 6px;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: gray;
+      text-decoration: underline;
+    }
+  }
+}

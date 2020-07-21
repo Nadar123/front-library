@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BookListComponent implements OnInit {
   id: string;
   books: any;
+
   constructor(
     private libraryService: LibraryService, 
     private router: Router ) { }
@@ -22,5 +23,4 @@ export class BookListComponent implements OnInit {
     this.libraryService.delete(this.id);
     this.router.navigate(['/']);
   }
-
 }

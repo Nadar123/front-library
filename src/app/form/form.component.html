@@ -2,7 +2,7 @@
   <form #f="ngForm" ngSubmit="onSubmit()" class="library-form">
     <div class="row">
       <div class="col-md-12">
-        <h2>About the Book</h2>
+        <h2>{{ formTitle }}</h2>
         <div class="form-group">
           <label for="book">Book Name</label>
           <input id="name" name="name" class="form-control"
@@ -50,6 +50,7 @@
                 Name must be at least 2 characters long.
               </div>
             </div>
+            <app-add-authors></app-add-authors>
         </div>
         <div class="form-group">
           <label for="publising_name"> publising Name </label>
