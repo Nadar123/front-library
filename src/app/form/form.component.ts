@@ -12,6 +12,8 @@ export class FormComponent implements OnInit {
 
   id: string;
   book: any;
+  authors: any;
+  publishing: any;
   formTitle: string;
 
   constructor(

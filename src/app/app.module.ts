@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import {BooksService} from './services/books.service';
+import {HttpService} from './services/http.service';
+import {LibraryService} from './library.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +16,6 @@ import { BookListComponent } from './book-list/book-list.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { FormComponent } from './form/form.component';
 import { BookItemComponent } from './book-item/book-item.component';
-import { BookEditComponent } from './book-edit/book-edit.component';
 import { AddAuthorsComponent } from './add-authors/add-authors.component';
 import { InputComponentComponent } from './input-component/input-component.component';
 
@@ -24,9 +27,8 @@ import { InputComponentComponent } from './input-component/input-component.compo
     NotificationsComponent,
     FormComponent,
     BookItemComponent,
-    BookEditComponent,
     AddAuthorsComponent,
-    InputComponentComponent
+    InputComponentComponent,
   ],
   imports: [
     HttpClientModule,
@@ -36,7 +38,9 @@ import { InputComponentComponent } from './input-component/input-component.compo
     NgbModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    LibraryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

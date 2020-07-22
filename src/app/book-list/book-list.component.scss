@@ -7,6 +7,12 @@
     justify-content: center;
     .search-wrapper {
       margin: 1rem;
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 300;
+        text-align: center;
+      }
     }
   }
   table {

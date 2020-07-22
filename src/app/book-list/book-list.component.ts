@@ -39,10 +39,10 @@ export class BookListComponent implements OnInit {
     },err => {
       console.log(err);
     })
-    this.httpService.post("book",{
-      "id": '',
-      "name": '',
-      "isbn_code": ''
+    this.httpService.post("books",{
+      "id": 'aaaa',
+      "name": 'test',
+      "isbn_code": 'test123'
     }).subscribe(res => {
       console.log(res);
     },err => {

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LibraryService } from '../library.service';
+import {LibraryService} from '../library.service';
+// import { BooksService } from '../services/books.service';
+// import { AuthorsService } from '../services/authors.service'
+// import { PublishingService } from '../services/publishing.service'; 
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,9 +13,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class BookItemComponent implements OnInit {
   id: string;
   book: any;
+  author: any;
+  publishing: any;
+
 
   constructor(
-    private libraryService: LibraryService, 
+    private libraryService: LibraryService,
+    // private booksService: BooksService,
+    // private authorsService: AuthorsService,
+    // private publishingService: PublishingService,
+   
     private route:  ActivatedRoute, 
     private router: Router) { }
 

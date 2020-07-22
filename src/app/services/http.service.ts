@@ -23,7 +23,7 @@ export class HttpService {
     post(path: string, body: Object = {}, options: Object = {}): Observable<any> {
       return this.http.post(
         `${this.baseUrl}/${path}`,
-        JSON.stringify(body),
+        // JSON.stringify(body),
         options
       );
     }

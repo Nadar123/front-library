@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class LibraryService {
+export class BooksService {
   booksSubject:BehaviorSubject<any>;
-  authors = [];
-  publishing =[];
   books = [
     {
       '_id': '1',
@@ -29,10 +28,8 @@ export class LibraryService {
       'expenditure': 'Tel-Aviv',
     }, 
   ];
-
   constructor() {
     this.booksSubject = new BehaviorSubject(this.books);
-    // this.setBooks(this.books);
    }
   getbooks() {
     return this.booksSubject.asObservable();
@@ -56,8 +53,8 @@ export class LibraryService {
    this.setBooks(this.books);
  }
 
- add(libraryitem: any) {
-   this.books.push(libraryitem);
+ add(bookitem: any) {
+   this.books.push(bookitem);
  }
 
  create(book: any) {
@@ -68,5 +65,4 @@ export class LibraryService {
 
   update(book: any ) {
   }
-  
 }
