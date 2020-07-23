@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {LibraryService} from '../library.service';
-// import { BooksService } from '../services/books.service';
-// import { AuthorsService } from '../services/authors.service'
-// import { PublishingService } from '../services/publishing.service'; 
+import { Component, OnInit } from '@angular/core' 
 import { ActivatedRoute, Router } from '@angular/router';
+import { BooksService } from '../services/books.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book-item',
@@ -12,28 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BookItemComponent implements OnInit {
   id: string;
-  book: any;
+  book$: Observable<any>;
   author: any;
   publishing: any;
+  address: any;
 
 
   constructor(
-    private libraryService: LibraryService,
-    // private booksService: BooksService,
-    // private authorsService: AuthorsService,
-    // private publishingService: PublishingService,
-   
+    private booksService: BooksService,
     private route:  ActivatedRoute, 
     private router: Router) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => this.id = params.id);
-    this.book = this.libraryService.getItem(this.id);
+    this.route.params.subscribe((params) => {
+      this.id = params.id
+      this.book$ = this.booksService.findOne(parseInt(this.id)).pipe((res:any)=>res.book);
+    });
+    
   }
 
   delete() {
-    this.libraryService.deleteBook(this.id);
-    this.router.navigate(['/']);
+    //this.libraryService.deleteBook(this.id);
+    this.router.navigate([`bookitem/${this.id}`]);
   }
   
   btnClick = function () {

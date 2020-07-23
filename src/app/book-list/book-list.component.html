@@ -1,24 +1,8 @@
 
   <div class="book-list-wrapper">
     <div class="input-search">
-      <div class="search-wrapper">
-        <label for="">Sreach By Book</label>
-        <app-input-component></app-input-component>
-      </div>
-      <div class="search-wrapper">
-        <label for="">Sreach By ISBN Code</label>
-        <app-input-component></app-input-component>
-      </div>
-  
-      <div class="search-wrapper">
-        <label for="">Sreach By Autors</label>
-        <app-input-component></app-input-component>
-      </div>
-  
-      <div class="search-wrapper">
-        <label for="">Sreacch By Publising name	</label>
-        <app-input-component></app-input-component>
-      </div>
+      <label for="">Sreach Box</label>
+      <input type="text" [(ngModel)]="searchName">
     </div>
     <table class="table">
     <thead>
@@ -30,35 +14,39 @@
   
     </tr>
     </thead>
-    <tbody *ngFor="let book of books">
-    <tr>
-      <td>{{ book.name }}</td>
-      <td>{{ book.isbn_code  }}</td>
-      <td>{{ book.author }}</td>
-      <td>{{ book.publising_name }}</td>
-      <td>{{ book.publising_year }}</td>
-      <td>{{ book.expenditure  }}</td>
-      <td>
-        <button 
-          routerLink="/bookitem/{{book._id}}" 
-          type="button" class="btn btn-outline-info"
-          > Show </button> 
-      </td>
-      <td>
-        <button 
-          type="button" 
-          class="btn btn-outline-primary"
-          routerLink="/newbook/edit/{{book._id}}"
-          > Update </button>
-      </td>
-      <td>
-        <button 
-        type="button" 
-        class="btn btn-outline-danger"
-        (click)="delete(book._id)" 
-        > Delete </button>
-      </td>
-    </tr>
+    <tbody >
+      <ng-container *ngIf="allBooks$|async as books">
+        <tr *ngFor="let book of books | filter:searchName">
+          <td>{{ book.name | filter:serachBook}}</td>
+          <td>{{ book.isbn_code  }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.publising_name }}</td>
+          <td>{{ book.publising_year }}</td>
+          <td>{{ book.expenditure  }}</td>
+          <td>
+            <button 
+              routerLink="/bookitem/{{book.id}}" 
+              type="button" class="btn btn-outline-info"
+              > Show </button> 
+          </td>
+          <td>
+            <button 
+              type="button" 
+              class="btn btn-outline-primary"
+              routerLink="/newbook/edit/{{book.id}}"
+              > Update </button>
+          </td>
+          <td>
+            <button 
+            type="button" 
+            class="btn btn-outline-danger"
+            (click)="delete(book.id)" 
+            > Delete </button>
+          </td>
+        </tr>
+      </ng-container>
+      
+   
     </tbody>
     </table>
   </div>

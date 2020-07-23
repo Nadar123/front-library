@@ -1,18 +1,14 @@
+
+
 <div class="container"> 
-  <form #f="ngForm" ngSubmit="onSubmit()" class="library-form">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="library-form">
     <div class="row">
-      <div class="col-md-12">
-        <!-- <app-book-detailsform> </app-book-detailsform>
-        <app-authors-form> </app-authors-form>
-        <app-publishing-form></app-publishing-form> -->
-        
+      <div class="col-md-12" formGroupName="book">
         <h2>{{ formTitle }}</h2>
         <div class="form-group">
           <label for="book">Book Name</label>
-          <input id="name" name="name" class="form-control"
-            required minlength="4" [(ngModel)]="book.name" 
-            #name="ngModel" >
-            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+          <input id="name"  class="form-control" formControlName="name"/>
+            <!-- <div *ngIf="book.name.invalid && (name.dirty || name.touched)"
                 class="alert alert-danger">
   
               <div *ngIf="name.errors.required">
@@ -21,14 +17,12 @@
               <div *ngIf="name.errors.minlength">
                 Name must be at least 4 characters long.
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
           <label for="isbn_code">ISBN Code</label>
-          <input id="isbn_code" name="isbn_code" class="form-control"
-            required minlength="8" [(ngModel)]="book.isbn_code" 
-            #isbn_code="ngModel" >
-            <div *ngIf="isbn_code.invalid && (isbn_code.dirty || isbn_code.touched)"
+          <input id="isbn_code" formControlName="isbn_code" class="form-control"/>
+            <!-- <div *ngIf="isbn_code.invalid && (isbn_code.dirty || isbn_code.touched)"
                 class="alert alert-danger">
   
               <div *ngIf="isbn_code.errors.required">
@@ -37,31 +31,29 @@
               <div *ngIf="isbn_code.errors.minlength">
                 Name must be at least 8 characters long.
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
           <label for="authors"> Author/s </label>
-          <input id="authors" name="authors" class="form-control"
-            required minlength="2" [(ngModel)]="book.authors" 
-            #authors="ngModel" >
-            <div *ngIf="authors.invalid && (authors.dirty || authors.touched)"
+          <input id="author" formControlName="authors" class="form-control"/>
+            <!-- <div *ngIf="author.invalid && (author.dirty || author.touched)"
                 class="alert alert-danger">
   
-              <div *ngIf="authors.errors.required">
+              <div *ngIf="author.errors.required">
                 author/s name is required.
               </div>
-              <div *ngIf="authors.errors.minlength">
+              <div *ngIf="author.errors.minlength">
                 Name must be at least 2 characters long.
               </div>
-            </div>
+            </div> -->
+
+            <!-- what param to bring in? -->
             <app-add-authors></app-add-authors>
         </div>
         <div class="form-group">
           <label for="publising_name"> publising Name </label>
-          <input id="publising_name" name="publising_name" class="form-control"
-            required minlength="1" [(ngModel)]="book.publising_name" 
-            #publising_name="ngModel" >
-            <div *ngIf="publising_name.invalid && (publising_name.dirty || publising_name.touched)"
+          <input id="publising_name" formControlName="publishing_name" class="form-control"/>
+            <!-- <div *ngIf="publising_name.invalid && (publising_name.dirty || publising_name.touched)"
                 class="alert alert-danger">
   
               <div *ngIf="publising_name.errors.required">
@@ -70,14 +62,12 @@
               <div *ngIf="publising_name.errors.minlength">
                 Name must be at least 1 characters long.
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
           <label for="publising_year">Year Of The Publising Book</label>
-          <input type="date" id="publising_year" name="publising_year" class="form-control"
-            required minlength="1" [(ngModel)]="book.publising_year" 
-            #publising_year="ngModel" />
-            <div *ngIf="publising_year.invalid && (publising_year.dirty || publising_year.touched)"
+          <input type="date" id="publising_year" formControlName="publishing_year" class="form-control" />
+            <!-- <div *ngIf="publising_year.invalid && (publising_year.dirty || publising_year.touched)"
                 class="alert alert-danger">
   
               <div *ngIf="publising_year.errors.required">
@@ -86,14 +76,12 @@
               <div *ngIf="publising_year.errors.minlength">
                 Date must be full year/mouth/day.
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
           <label for="expenditure">Place Of Expenditure </label>          
-          <input id="expenditure" name="expenditure" class="form-control"
-            required minlength="2" [(ngModel)]="book.expenditure" 
-            #expenditure="ngModel" >
-            <div *ngIf="expenditure.invalid && (expenditure.dirty || expenditure.touched)"
+          <input id="expenditure" formControlName="expenditure" class="form-control" />
+            <!-- <div *ngIf="expenditure.invalid && (expenditure.dirty || expenditure.touched)"
                 class="alert alert-danger">
   
               <div *ngIf="expenditure.errors.required">
@@ -102,117 +90,102 @@
               <div *ngIf="expenditure.errors.minlength">
                 Name must be at least 2 characters long.
               </div>
-            </div>
+            </div> -->
         </div>
       </div>
-      <div class="col-md-12">
+      
+      <ng-container *ngIf="mode!=='update'">
+        <div class="col-md-12" formGroupName="authors">
         <h2> Books Authors</h2>
         <div class="form-group">
           <label for="first_name">First Name</label>
-          <input id="first_name" name="first_name" class="form-control"
-            required minlength="4" [(ngModel)]="authors.first_name" 
-            #first_name="ngModel" >
-            <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)"
+          <input id="first_name" formControlName="first_name" class="form-control">
+            <!-- <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)"
                 class="alert alert-danger">
-      
               <div *ngIf="first_name.errors.required">
                 first_name is required.
               </div>
               <div *ngIf="first_name.errors.minlength">
                 Name must be at least 4 characters long.
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
           <label for="last_name">Last Name</label>
-          <input id="last_name" name="last_name" class="form-control"
-            required minlength="4" [(ngModel)]="authors.last_name" 
-            #last_name="ngModel" >
-            <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)"
+          <input type="text" id="last_name" formControlName="last_name" class="form-control" >
+            <!-- <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)"
                 class="alert alert-danger">
-      
+    
               <div *ngIf="last_name.errors.required">
                 last_name is required.
               </div>
               <div *ngIf="last_name.errors.minlength">
                 Name must be at least 4 characters long.
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-group">
           <label for="date_of_birth">Date Of Birth</label>
-          <input id="date_of_birth" name="date_of_birth" class="form-control"
-            required minlength="4" [(ngModel)]="authors.date_of_birth" 
-            #date_of_birth="ngModel" type="date">
-            <div *ngIf="date_of_birth.invalid && (date_of_birth.dirty || date_of_birth.touched)"
+          <input id="date_of_birth" formControlName="date_of_birth" class="form-control" type="date">
+            <!-- <div *ngIf="date_of_birth.invalid && (date_of_birth.dirty || date_of_birth.touched)"
                 class="alert alert-danger">
-      
               <div *ngIf="date_of_birth.errors.required">
                 date_of_birth is required.
               </div>
               <div *ngIf="date_of_birth.errors.minlength">
                 Name must be at least 4 characters long.
               </div>
-            </div>
+            </div> -->
         </div> 
       </div> 
-      <div class="col-md-12">
-        <h2>Books Publishing</h2>
-        <div class="form-group">
-          <label for="name">publising Name</label>
-          <input 
-          id="name" 
-          name="name" 
-          class="form-control"
-            required minlength="4" [(ngModel)]="publishing.name" 
-            #name="ngModel" type="text">
-            <div *ngIf="name.invalid && (name.dirty || name.touched)"
-                class="alert alert-danger">
+      </ng-container>
       
-              <div *ngIf="name.errors.required">
-                name is required.
-              </div>
-              <div *ngIf="name.errors.minlength">
-                Name must be at least 4 characters long.
-              </div>
-            </div>
-        </div>
-        <div class="form-group">
-          <label for="esttabish_year">esttabish year </label>
-          <input id="esttabish_year" esttabish_year="esttabish_year" class="form-control"
-            required minlength="4" [(ngModel)]="publishing.esttabish_year" 
-            #esttabish_year="ngModel" type="taext">
-            <div *ngIf="esttabish_year.invalid && (esttabish_year.dirty || esttabish_year.touched)"
-                class="alert alert-danger">
-
-              <div *ngIf="esttabish_year.errors.required">
-                esttabish_year is required.
-              </div>
-              <div *ngIf="esttabish_year.errors.minlength">
-                esttabish_year must be at least 4 characters long.
-              </div>
-            </div>
-        </div>
-        <div class="form-group">
-          <label for="name">publising Name</label>
-          <input 
-            type="text" 
-            class="form-control"  
-            id="name" 
-            name="name" 
-            class="form-control"
-            required minlength="4" 
-            [(ngModel)]="publishing.name" 
-            #name="ngModel"
-            required />
+      <ng-container *ngIf="mode!=='update'">
+        <div class="col-md-12" formGroupName="publishing">
+          <h2>Books Publishing</h2>
+          <div class="form-group">
+            <label for="name">publising Name</label>
+            <input id="name" type="text" formControlName="name" class="form-control" />
+              <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                  class="alert alert-danger">
+        
+                <div *ngIf="name.errors.required">
+                  name is required.
+                </div>
+                <div *ngIf="name.errors.minlength">
+                  Name must be at least 4 characters long.
+                </div>
+              </div> -->
+          </div>
+          <div class="form-group">
+            <label for="establish_year">estabish year </label>
+            <input id="establish_year" type="text" formControlName="establish_year" class="form-control" />
+              <!-- <div *ngIf="esttabish_year.invalid && (esttabish_year.dirty || esttabish_year.touched)"
+                  class="alert alert-danger">
+  
+                <div *ngIf="esttabish_year.errors.required">
+                  esttabish_year is required.
+                </div>
+                <div *ngIf="esttabish_year.errors.minlength">
+                  esttabish_year must be at least 4 characters long.
+                </div>
+              </div> -->
+          </div>
+          <div class="form-group">
+            <label for="name">publising Name</label>
+            <input type="text" class="form-control" id="name" formControlName="country"/>
+          </div> 
         </div> 
-      </div> 
+      </ng-container>
+      
+     
     </div>
     <div class="submit-btn">
       <button 
-      (click)="onSubmit()" 
       type="submit"
       class="btn btn-primary"
+      (click)="btnClick()" 
+      routerLink=""
       >
         Submit
     </button>

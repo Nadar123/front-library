@@ -3,18 +3,27 @@
   margin: 3rem auto;
 
   .input-search {
-    display: flex;
-    justify-content: center;
-    .search-wrapper {
-      margin: 1rem;
-      label {
-        display: block;
-        font-size: 14px;
-        font-weight: 300;
-        text-align: center;
+    text-align: center;
+    padding: 0rem 0rem 3rem;
+    min-height: 150px;
+    label {
+      display: block;
+    }
+    input {
+      border: 1px solid #77a2d08a;
+      width: 30%;
+      margin: auto;
+      padding: 7px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease-in;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rbga(0,0,0,0.5);
       }
     }
   }
+
   table {
     border: 1px solid #77a2d08a;
   
@@ -22,6 +31,7 @@
       border: 1px solid #77a2d08a;
       tr {
         border: 1px solid #77a2d08a;
+
         th {
           border-top: 1px solid #77a2d08a;
           border-bottom: 1px solid #77a2d08a;
@@ -35,6 +45,7 @@
       border: 1px solid #77a2d08a;
       tr {
         transition: background-color 0.2s ease-in-out;
+        cursor: pointer;
         &:hover {
           background-color: rgba(0,0,0, 0.05);
         }

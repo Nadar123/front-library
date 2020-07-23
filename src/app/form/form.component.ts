@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LibraryService } from '../library.service';
+import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgModel } from '@angular/forms';
+import { NgModel, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BooksService } from '../services/books.service';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form',
@@ -15,42 +17,98 @@ export class FormComponent implements OnInit {
   authors: any;
   publishing: any;
   formTitle: string;
-
+  bookForm:FormGroup;
+  mode:string = 'update';
   constructor(
-    private libraryService: LibraryService, 
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _fb:FormBuilder,
+    private booksService:BooksService
   ) {  }
 
   ngOnInit() {
+    this.bookForm = this._fb.group({
+      book:this._fb.group({
+        name:['',[Validators.required]],
+        isbn_code:['',[Validators.required,Validators.minLength(8)]],
+        author:['',[Validators.required,Validators.minLength(2)]],
+        publishing_name:['',[Validators.required,Validators.minLength(10)]],
+        publishing_year:['',[Validators.required,Validators.minLength(5)]],
+        expenditure:['',[Validators.required,Validators.minLength(2)]],
+      }),
+      authors:this._fb.group({
+        first_name: ['', [Validators.required, Validators.minLength(2)]],
+        last_name: ['', [Validators.required,Validators.minLength(2)]],
+        date_of_birth: ['', [Validators.minLength(2)]]
+      }),
+      publishing: this._fb.group({
+        name: ['', [Validators.required, Validators.minLength(2)]],
+        establish_year: ['', [Validators.required, Validators.minLength(4)]],
+        country: ['',[Validators.required, Validators.minLength(4)]]
+      })
+    })
+   
+  
     // to bring book-id
-    this.route.params.subscribe((params) => this.id = params.id);
-    // book
-    if (this.id) {
-      this.book = this.libraryService.getItem(this.id);
+    this.route.params.subscribe((params) => {
+    if (params.id) {
+      this.book = this.booksService.findOne(parseInt(params.id)).subscribe((res:any)=>{
+        if(!res.book){
+          return;
+        }
+        this.id = params.id;
+        this.mode='update';
+        let book = res.book;
+        this.authors = res.authors||null;
+        this.publishing = res.publishing||null;
+
+        this.bookForm = this._fb.group({
+          book:this._fb.group({
+            name:[book.name,[Validators.required]],
+            isbn_code:[book.isbn_code,[Validators.required,Validators.minLength(8)]],
+            author:[book.author,[Validators.required,Validators.minLength(2)]],
+            publishing_name:[book.publishing_name,[Validators.required,Validators.minLength(10)]],
+            publishing_year:[book.publishing_year,[Validators.required,Validators.minLength(5)]],
+            expenditure:[book.expenditure,[Validators.required,Validators.minLength(2)]],
+          }),
+          // authors:this._fb.group({
+          //   first_name: [this.authors.first_name, [Validators.required, Validators.minLength(2)]],
+          //   last_name: [this.authors.last_name, [Validators.required,Validators.minLength(2)]],
+          //   date_of_birth: [book.date_of_birth, [Validators.minLength(2)]]
+          // }),
+          // publishing: this._fb.group({
+          //   name: [this.publishing.name, [Validators.required, Validators.minLength(2)]],
+          //   establish_year: [this.publishing.establish_year, [Validators.required, Validators.minLength(4)]],
+          //   country: [this.publishing.country,[Validators.required, Validators.minLength(4)]]
+          // })
+        })
+
+      });
       this.formTitle = 'Edit Book';
-    } else {
-        this.book = {
-          name: '', 
-          isbn_code: '', 
-          author: '', 
-          publising_name: '', 
-          publising_year: '',
-          expenditure: ''
-        };
+    }
         this.formTitle = 'Book Details';
     }
-  }
+  );
+}
 
   onSubmit() {
-    // update new book
-    if (this.id) {
-      this.libraryService.update(this.book);
-
-    } else {
-      // create new book
-      this.id = this.libraryService.create(this.book);
+    switch(this.mode){
+      case "update":
+        this.bookForm.value.id=this.id;
+        this.booksService.updateBook(this.bookForm.value)
+        .subscribe((res:{code:number,data?:any,error?:string})=>{
+          console.log(res)
+      });
+        break;
+      default:
+        this.booksService.createNewBook(this.bookForm.value)
+        .subscribe((res:{code:number,data?:any,error?:string})=>{
+          console.log(res)
+      });
     }
-    this.router.navigate([`bookitem/${this.id}`]);
+  };
+  
+  btnClick = function () {
+    this.router.navigateByUrl('/');
   };
 }

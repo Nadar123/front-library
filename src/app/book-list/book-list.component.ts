@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {LibraryService} from '../library.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { HttpService } from '../services/http.service'
+import { NgModel } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BooksService } from '../services/books.service';
+import { map } from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
@@ -12,7 +17,10 @@ import { HttpService } from '../services/http.service'
 export class BookListComponent implements OnInit {
   id: string;
   books: any;
-  headers:any = [
+  // authors: any;
+  // address: any;
+  // pulishing: any;
+  headers: any = [
     "name", 
     "ISBN Code", 
     "Authors", 
@@ -20,25 +28,23 @@ export class BookListComponent implements OnInit {
     "Publising Year", 
     "Expenditure Place"
   ];
+  searchName: string;
+  searchBook: string;
+  allBooks$:Observable<any[]>
   
-  booksSubscription:Subscription = new Subscription();
+ 
   constructor(
-    private libraryService: LibraryService,
+    
     private http: HttpClient,
     private httpService: HttpService,
+    private booksService:BooksService,
     private router: Router ) { 
-
-      this.booksSubscription = this.libraryService.getbooks().subscribe(books=>{
-        this.books = books;
-      })
     }
 
   ngOnInit(): void {
-    this.httpService.get("books").subscribe(res => {
-      console.log(res);
-    },err => {
-      console.log(err);
-    })
+    this.allBooks$ = this.booksService.findAll().pipe(
+      map((res:any)=>res.data)
+    )
     this.httpService.post("books",{
       "id": 'aaaa',
       "name": 'test',
@@ -53,12 +59,12 @@ export class BookListComponent implements OnInit {
 
 
   delete(bookId:string) {
-    this.libraryService.deleteBook(bookId);
+   // this.libraryService.deleteBook(bookId);
     this.router.navigate(['/']);
   }
 
   addbook(){
     this.httpService.post("/add",{book:'hello'}).subscribe( res => {
-    })
+    }) 
   }
 }
