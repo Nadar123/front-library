@@ -19,10 +19,10 @@
         <tr *ngFor="let book of books | filter:searchName">
           <td>{{ book.name | filter:serachBook}}</td>
           <td>{{ book.isbn_code  }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.publising_name }}</td>
-          <td>{{ book.publising_year }}</td>
-          <td>{{ book.expenditure  }}</td>
+          <td>{{ book.authors.length?book.authors[0].first_name:'No Author' }}</td>
+          <td>{{ book.publishing.publising_name }}</td>
+          <td>{{ book.publishing.publising_year }}</td>
+          <td>{{ book.publishing.expenditure  }}</td>
           <td>
             <button 
               routerLink="/bookitem/{{book.id}}" 
