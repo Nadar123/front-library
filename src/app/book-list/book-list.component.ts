@@ -17,22 +17,19 @@ import { map } from 'rxjs/operators';
 export class BookListComponent implements OnInit {
   id: string;
   books: any;
-  // authors: any;
-  // address: any;
-  // pulishing: any;
+
   headers: any = [
-    "name", 
+    "Name", 
     "ISBN Code", 
     "Authors", 
-    "Publising Name", 
-    "Publising Year", 
+    "Publishing Name", 
+    "Publishing Year", 
     "Expenditure Place"
   ];
   searchName: string;
   searchBook: string;
   allBooks$:Observable<any[]>
   
- 
   constructor(
     
     private http: HttpClient,
@@ -42,25 +39,40 @@ export class BookListComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.findbook();
+    
+    // this.allBooks$ = this.booksService.findAll().pipe(
+    //   map((res:any)=>res.data)
+    //   )
+    //   this.httpService.post("books",{
+        
+    //   }).subscribe(res => {
+    //   console.log(res);
+    // },err => {
+    //   console.log(err);
+    // })
+  }
+
+  findbook () {
     this.allBooks$ = this.booksService.findAll().pipe(
       map((res:any)=>res.data)
-    )
-    this.httpService.post("books",{
-      "id": 'aaaa',
-      "name": 'test',
-      "isbn_code": 'test123'
-    }).subscribe(res => {
+      )
+      this.httpService.post("books",{
+        
+      }).subscribe(res => {
       console.log(res);
     },err => {
       console.log(err);
     })
-    // this.books = this.libraryService.getbooks();
   }
 
-
   delete(bookId:string) {
-   // this.libraryService.deleteBook(bookId);
-    this.router.navigate(['/']);
+   this.booksService.deleteOne(parseInt(bookId)).subscribe((res:any)=>{
+     if(res.code===200){
+      this.findbook();
+     }
+   })
+    
   }
 
   addbook(){

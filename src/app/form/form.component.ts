@@ -20,6 +20,7 @@ export class FormComponent implements OnInit {
   bookForm:FormGroup;
   mode:string = 'new';
   error:string;
+  formErrors:any[];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -27,13 +28,21 @@ export class FormComponent implements OnInit {
     private booksService:BooksService
   ) {  }
 
+  public get bookGroup():FormGroup{
+    return this.bookForm.get('book') as FormGroup
+  }
+  public get authorsGroup():FormGroup{
+    return this.bookForm.get('authors') as FormGroup
+  }
+  public get publishingBook():FormGroup{
+    return this.bookForm.get('publishing') as FormGroup
+  }
   ngOnInit() {
     this.bookForm = this._fb.group({
       book:this._fb.group({
         name:['',[Validators.required]],
-        isbn_code:['',[Validators.required,Validators.minLength(8)]],
-        authors:['',[Validators.required,Validators.minLength(2)]],
-        publishing_name:['',[Validators.required,Validators.minLength(10)]],
+        isbn_code:['',[Validators.required,Validators.minLength(5)]],
+        publishing_name:['',[Validators.required,Validators.minLength(5)]],
         publishing_year:['',[Validators.required,Validators.minLength(5)]],
         expenditure:['',[Validators.required,Validators.minLength(2)]],
       }),
@@ -62,40 +71,51 @@ export class FormComponent implements OnInit {
         let book = res.book;
         this.authors = res.authors||null;
         this.publishing = res.publishing||null;
-
         this.bookForm = this._fb.group({
           book:this._fb.group({
             name:[book.name,[Validators.required]],
-            isbn_code:[book.isbn_code,[Validators.required,Validators.minLength(8)]],
-            author:[book.author,[Validators.required,Validators.minLength(2)]],
-            publishing_name:[book.publishing_name,[Validators.required,Validators.minLength(10)]],
+            isbn_code:[book.isbn_code,[Validators.required,Validators.minLength(4)]],
+            publishing_name:[book.publishing_name,[Validators.required,Validators.minLength(3)]],
             publishing_year:[book.publishing_year,[Validators.required,Validators.minLength(5)]],
             expenditure:[book.expenditure,[Validators.required,Validators.minLength(2)]],
           }),
           authors:this._fb.group({
-            first_name: [this.authors.first_name, [Validators.required, Validators.minLength(2)]],
-            last_name: [this.authors.last_name, [Validators.required,Validators.minLength(2)]],
-            date_of_birth: [book.date_of_birth, [Validators.minLength(2)]]
+            first_name: [book.authors.length?book.authors[0].first_name:'', [Validators.required, Validators.minLength(2)]],
+            last_name: [book.authors.length?book.authors[0].last_name:'', [Validators.required,Validators.minLength(2)]],
+            date_of_birth: [book.authors.length?book.authors[0].date_of_birth:'', [Validators.minLength(2)]]
           }),
           publishing: this._fb.group({
-            name: [this.publishing.name, [Validators.required, Validators.minLength(2)]],
-            establish_year: [this.publishing.establish_year, [Validators.required, Validators.minLength(4)]],
-            country: [this.publishing.country,[Validators.required, Validators.minLength(4)]]
+            name: [book.publishing.name, [Validators.required, Validators.minLength(2)]],
+            establish_year: [book.publishing.establish_year, [Validators.required, Validators.minLength(4)]],
+            country: [book.publishing.country,[Validators.required, Validators.minLength(4)]]
           })
         })
 
       });
       this.formTitle = 'Edit Book';
     }
-        this.formTitle = 'Book Details';
+      this.formTitle = 'Book Details';
     }
   );
 }
 
   onSubmit() {
     this.error = null;
+    this.formErrors = [];
+    for (let control in this.bookForm['controls']){
+       let formGroup = this.bookForm['controls'][control];
+       for( let innerC in formGroup['controls']){
+         let innerControl = formGroup['controls'][innerC];
+         if(!innerControl.valid){
+           this.formErrors.push({name:innerC,errors:innerControl.errors})
+         }
+       } 
+    }
+  
     if(!this.bookForm.valid){
-      this.error = "Form is"
+      this.error = "Form is Invalid";
+      console.log(this.bookForm)
+      return;
     }
     switch(this.mode){
       case "update":

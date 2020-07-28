@@ -24,5 +24,8 @@ export class BooksService {
   findAll(){
     return this.http.get(URLS.API_URL+`books`)
   }
+  deleteOne(id:number){
+    return this.http.post(URLS.API_URL+`books/delete`,{id})
+  }
 
 }

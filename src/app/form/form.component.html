@@ -9,93 +9,85 @@
         <div class="form-group">
           <label for="book">Book Name</label>
           <input id="name"  class="form-control" formControlName="name"/>
-            <!-- <div *ngIf="book.name.invalid && (name.dirty || name.touched)"
-                class="alert alert-danger">
+          <div 
+            *ngIf="bookGroup.controls['name'].invalid && (bookGroup.controls['name'].dirty || bookGroup.controls['name'].touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="bookGroup.controls['isbn_code'].errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="bookGroup.controls['isbn_code'].errors.minlength">
+              Name must be at least 2 characters long.
+            </div>
+          </div>
   
-              <div *ngIf="name.errors.required">
-                Name is required.
-              </div>
-              <div *ngIf="name.errors.minlength">
-                Name must be at least 4 characters long.
-              </div>
-            </div> -->
         </div>
         <div class="form-group">
           <label for="isbn_code">ISBN Code</label>
-          <input id="isbn_code" formControlName="isbn_code" class="form-control"/>
-            <!-- <div *ngIf="isbn_code.invalid && (isbn_code.dirty || isbn_code.touched)"
+          <input id="isbn_code" formControlName="isbn_code" class="form-control required"/>
+         
+             <div *ngIf="bookGroup.controls['isbn_code'].invalid && (bookGroup.controls['isbn_code'].dirty || bookGroup.controls['isbn_code'].touched)"
                 class="alert alert-danger">
   
-              <div *ngIf="isbn_code.errors.required">
+              <div *ngIf="bookGroup.controls['isbn_code'].errors.required">
                 ISBN Code is required.
               </div>
-              <div *ngIf="isbn_code.errors.minlength">
-                Name must be at least 8 characters long.
+              <div *ngIf="bookGroup.controls['isbn_code'].errors.minlength">
+                Name must be at least 4 characters long.
               </div>
-            </div> -->
+            </div>
         </div>
-        <div class="form-group">
-          <label for="authors"> Author/s </label>
-          <input id="author" formControlName="authors" class="form-control"/>
-            <!-- <div *ngIf="author.invalid && (author.dirty || author.touched)"
-                class="alert alert-danger">
-  
-              <div *ngIf="author.errors.required">
-                author/s name is required.
-              </div>
-              <div *ngIf="author.errors.minlength">
-                Name must be at least 2 characters long.
-              </div>
-            </div> -->
 
-            <!-- what param to bring in? -->
-            <app-add-authors></app-add-authors>
+        <app-add-authors></app-add-authors>
+       
+        <div class="form-group">
+          <label for="publishing_name"> publishing Name </label>
+          <input id="publishing_name" formControlName="publishing_name" class="form-control"/>
+          <div 
+            *ngIf="bookGroup.controls['publishing_name'].invalid && (bookGroup.controls['publishing_name'].dirty || bookGroup.controls['publishing_name'].touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="bookGroup.controls['publishing_name'].errors.required">
+              Publishing Name is required.
+            </div>
+            <div *ngIf="bookGroup.controls['publishing_name'].errors.minlength">
+              Publishing Name must be at least 3 characters long.
+            </div>
+          </div>
         </div>
         <div class="form-group">
-          <label for="publising_name"> publising Name </label>
-          <input id="publising_name" formControlName="publishing_name" class="form-control"/>
-            <!-- <div *ngIf="publising_name.invalid && (publising_name.dirty || publising_name.touched)"
-                class="alert alert-danger">
-  
-              <div *ngIf="publising_name.errors.required">
-                Publising Name is required.
-              </div>
-              <div *ngIf="publising_name.errors.minlength">
-                Name must be at least 1 characters long.
-              </div>
-            </div> -->
-        </div>
-        <div class="form-group">
-          <label for="publising_year">Year Of The Publising Book</label>
-          <input type="date" id="publising_year" formControlName="publishing_year" class="form-control" />
-            <!-- <div *ngIf="publising_year.invalid && (publising_year.dirty || publising_year.touched)"
-                class="alert alert-danger">
-  
-              <div *ngIf="publising_year.errors.required">
-                Date is required for submiting the form. do it now mather fucker.
-              </div>
-              <div *ngIf="publising_year.errors.minlength">
-                Date must be full year/mouth/day.
-              </div>
-            </div> -->
+          <label for="publishing_year">Year Of The Publising Book</label>
+          <input type="date" id="publishing_year" formControlName="publishing_year" class="form-control" />
+          <div 
+            *ngIf="bookGroup.controls['publishing_year'].invalid && (bookGroup.controls['publishing_year'].dirty || bookGroup.controls['publishing_name'].touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="bookGroup.controls['publishing_year'].errors.required">
+              Publishing Name is required.
+            </div>
+            <div *ngIf="bookGroup.controls['publishing_year'].errors.minlength">
+              Publishing Name must be at least 3 characters long.
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <label for="expenditure">Place Of Expenditure </label>          
           <input id="expenditure" formControlName="expenditure" class="form-control" />
-            <!-- <div *ngIf="expenditure.invalid && (expenditure.dirty || expenditure.touched)"
-                class="alert alert-danger">
-  
-              <div *ngIf="expenditure.errors.required">
-                Place Of Expenditure is required.
-              </div>
-              <div *ngIf="expenditure.errors.minlength">
-                Name must be at least 2 characters long.
-              </div>
-            </div> -->
+          <div 
+            *ngIf="bookGroup.controls['expenditure'].invalid && (bookGroup.controls['expenditure'].dirty || bookGroup.controls['expenditure'].touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="bookGroup.controls['expenditure'].errors.required">
+              Place Of Expenditure is required.
+            </div>
+            <div *ngIf="bookGroup.controls['expenditure'].errors.minlength">
+              Place Of Expenditure must be at least 2 characters long.
+            </div>
+          </div>
         </div>
       </div>
       
-      <ng-container *ngIf="mode!=='update'">
+      <ng-container>
         <div class="col-md-12" formGroupName="authors">
         <h2> Books Authors</h2>
         <div class="form-group">
@@ -141,7 +133,7 @@
       </div> 
       </ng-container>
       
-      <ng-container *ngIf="mode!=='update'">
+      <ng-container >
         <div class="col-md-12" formGroupName="publishing">
           <h2>Books Publishing</h2>
           <div class="form-group">

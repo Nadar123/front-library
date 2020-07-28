@@ -5,48 +5,43 @@
       <span class="isbn_code"> ISBN Code: {{ book.isbn_code}}</span>
     </div>
     <div class="card-body">
-      <p class="text-title"> Author:
+      <!-- <p class="text-title"> Author:
         <span class="dynamic-text">{{ book.authors }}</span>
-      </p>
+      </p> -->
       <p class="text-title">
         Publishing Name:
-        <span class="dynamic-text">  {{ book.publising_name }} </span>
+        <span class="dynamic-text">  {{ book.publishing.name }} </span>
       </p>
       <p class="text-title">
         Publishing Year:
-        <span class="dynamic-text"> {{ book.publising_year }} </span>
+        <span class="dynamic-text"> {{book.publishing.establish_year}} </span>
       </p>
       <p class="text-title">
         Publishing Place: 
-        <span class="dynamic-text"> {{ book.expenditure }} </span>
+        <span class="dynamic-text"> {{ book.publishing.country }} </span>
       </p>
   
-      <p class="text-title"> First Name:
-        <span class="dynamic-text">dddd {{ author.first_name }}</span>
-      </p>
+       <p class="text-title"> First Name:
+        <span class="dynamic-text"> {{ book.authors[0].first_name }}</span>
+      </p> 
       <p class="text-title"> last Name:
-        <span class="dynamic-text">{{ author.last_name }}</span>
+        <span class="dynamic-text">{{ book.authors[0].last_name }}</span>
       </p>
       <p class="text-title"> Year Of Birth:
-        <span class="dynamic-text">{{ author.yaer_of_birth }}</span>
+        <span class="dynamic-text">{{ book.authors[0].year_of_birth }}</span>
       </p>
-      <p class="text-title"> publishing Name:
+      <!-- <p class="text-title"> publishing Name:
         <span class="dynamic-text">{{ publishing.name }}</span>
-      </p>
-      <p class="text-title"> Establish Year:
+      </p> -->
+      <!-- <p class="text-title"> Establish Year:
         <span class="dynamic-text">{{ publishing.establish_year }}</span>
-      </p>
-      <p class="text-title"> Address:(Counrty, City, street):
-        <span class="dynamic-text">{{ publishing.country}}</span>
-      </p>
+      </p> -->
+       <p class="text-title"> Address:(Counrty, City, street):
+        <span class="dynamic-text">{{ book.publishing.country }}</span>
+      </p> 
   
     </div>
     <div class="btn-book-item">
-      <a 
-      (click)="delete()" 
-      class="btn btn-outline-danger"
-      > Delete 
-      </a> 
       <a 
         (click)="btnClick()" 
         routerLink="" 
