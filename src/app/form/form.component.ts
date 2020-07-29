@@ -37,6 +37,7 @@ export class FormComponent implements OnInit {
   public get publishingGroup():FormGroup{
     return this.bookForm.get('publishing') as FormGroup
   }
+
   ngOnInit() {
     this.bookForm = this._fb.group({
       book:this._fb.group({

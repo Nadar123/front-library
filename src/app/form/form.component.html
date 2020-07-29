@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="publishing_year">Year Of The Publising Book</label>
+          <label for="publishing_year">Publising Book Year</label>
           <input type="date" id="publishing_year" formControlName="publishing_year" class="form-control" />
           <div 
             *ngIf="bookGroup.controls['publishing_year'].invalid && (bookGroup.controls['publishing_year'].dirty || bookGroup.controls['publishing_name'].touched)"
@@ -175,8 +175,19 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="name">publising Name</label>
-            <input type="text" class="form-control" id="name" formControlName="country"/>
+            <label for="country">Address:(Counrty, City, street)</label>
+            <input type="text" class="form-control" id="country" formControlName="country"/>
+            <div 
+              *ngIf="publishingGroup.controls['country'].invalid && (publishingGroup.controls['country'].dirty || publishingGroup.controls['country'].touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="publishingGroup.controls['country'].errors.required">
+                Establish Year is required.
+              </div>
+              <div *ngIf="publishingGroup.controls['country'].errors.minlength">
+                Address:(Counrty, City, street) must be at least 4 characters long.
+              </div>
+            </div>
           </div> 
         </div> 
       </ng-container>

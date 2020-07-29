@@ -20,9 +20,13 @@
           <td>{{ book.name | filter:serachBook}}</td>
           <td>{{ book.isbn_code  }}</td>
           <td>{{ book.authors.length?book.authors[0].first_name:'No Author' }}</td>
-          <td>{{ book.publishing.name }}</td>
+          <td>{{ book.publishing.name }}  <br>
+              Establishv Year: {{ book.publishing.establish_year }} 
+          </td>
           <td>{{ book.publishing.establish_year }}</td>
-          <td>{{ book.expenditure  }}</td>
+          <td>{{ book.expenditure  }} <br>
+              Address: {{ book.publishing.country }}
+          </td>
           <td>
             <button 
               routerLink="/bookitem/{{book.id}}" 
