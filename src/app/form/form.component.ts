@@ -34,7 +34,7 @@ export class FormComponent implements OnInit {
   public get authorsGroup():FormGroup{
     return this.bookForm.get('authors') as FormGroup
   }
-  public get publishingBook():FormGroup{
+  public get publishingGroup():FormGroup{
     return this.bookForm.get('publishing') as FormGroup
   }
   ngOnInit() {
@@ -100,21 +100,21 @@ export class FormComponent implements OnInit {
 }
 
   onSubmit() {
-    this.error = null;
-    this.formErrors = [];
-    for (let control in this.bookForm['controls']){
-       let formGroup = this.bookForm['controls'][control];
-       for( let innerC in formGroup['controls']){
-         let innerControl = formGroup['controls'][innerC];
-         if(!innerControl.valid){
-           this.formErrors.push({name:innerC,errors:innerControl.errors})
-         }
-       } 
-    }
+    // this.error = null;
+    // this.formErrors = [];
+    // for (let control in this.bookForm['controls']){
+    //    let formGroup = this.bookForm['controls'][control];
+    //    for( let innerC in formGroup['controls']){
+    //      let innerControl = formGroup['controls'][innerC];
+    //      if(!innerControl.valid){
+    //        this.formErrors.push({name:innerC,errors:innerControl.errors})
+    //      }
+    //    } 
+    // }
   
     if(!this.bookForm.valid){
       this.error = "Form is Invalid";
-      console.log(this.bookForm)
+      // console.log(this.bookForm)
       return;
     }
     switch(this.mode){
@@ -122,7 +122,8 @@ export class FormComponent implements OnInit {
         this.bookForm.value.id=this.id;
         this.booksService.updateBook(this.bookForm.value)
         .subscribe((res:{code:number,data?:any,error?:string})=>{
-          console.log(res)
+          // console.log(res)
+          return this.router.navigate(['/'])
       });
         break;
       default:
@@ -136,8 +137,5 @@ export class FormComponent implements OnInit {
       });
     }
   };
-  
-  btnClick = function () {
-    //this.router.navigateByUrl('/');
-  };
+
 }

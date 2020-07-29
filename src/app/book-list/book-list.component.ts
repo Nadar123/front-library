@@ -40,17 +40,6 @@ export class BookListComponent implements OnInit {
 
   ngOnInit(): void {
     this.findbook();
-    
-    // this.allBooks$ = this.booksService.findAll().pipe(
-    //   map((res:any)=>res.data)
-    //   )
-    //   this.httpService.post("books",{
-        
-    //   }).subscribe(res => {
-    //   console.log(res);
-    // },err => {
-    //   console.log(err);
-    // })
   }
 
   findbook () {

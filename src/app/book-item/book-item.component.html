@@ -28,14 +28,14 @@
         <span class="dynamic-text">{{ book.authors[0].last_name }}</span>
       </p>
       <p class="text-title"> Year Of Birth:
-        <span class="dynamic-text">{{ book.authors[0].year_of_birth }}</span>
+        <span class="dynamic-text">{{ book.authors[0].date_of_birth | date:'medium'}}</span>
       </p>
-      <!-- <p class="text-title"> publishing Name:
-        <span class="dynamic-text">{{ publishing.name }}</span>
-      </p> -->
-      <!-- <p class="text-title"> Establish Year:
-        <span class="dynamic-text">{{ publishing.establish_year }}</span>
-      </p> -->
+      <p class="text-title"> publishing Name:
+        <span class="dynamic-text">{{ book.publishing.name }}</span>
+      </p> 
+      <p class="text-title"> Establish Year:
+        <span class="dynamic-text">{{ book.publishing.establish_year}}</span>
+      </p>
        <p class="text-title"> Address:(Counrty, City, street):
         <span class="dynamic-text">{{ book.publishing.country }}</span>
       </p> 

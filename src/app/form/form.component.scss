@@ -55,10 +55,18 @@
 
     .submit-btn {
       display: flex;
-      justify-content: center;
-      margin-top: 2rem;
+      flex-direction: column;
+      width: 50%;
+      margin: auto;
       button {
+        margin: 1rem;
         padding: 12px 8rem;
+      }
+      .error {
+        text-align: center;
+        color: red;
+        border: 1px solid rgba(244, 65, 87, 0.7);
+        padding: 1rem;
       }
     }
   }

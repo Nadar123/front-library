@@ -12,13 +12,11 @@
   .card-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
   }
 
   .card-body {
     .text-title {
       color: #1b9deb;
-      text-transform: uppercase;
       transition: all 0.2 ease-in-out;
       .dynamic-text {
         color: gray;
